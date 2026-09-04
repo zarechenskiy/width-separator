@@ -1,19 +1,19 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.zarechenskiy.widthseparator</id>
-    <name>width-separator</name>
+    <name>Width Separator</name>
     <vendor>zarechenskiy</vendor>
     <description><![CDATA[
-        <p><b>width-separator</b> is a repository that provides a pure template to make it easier to create a new plugin project.</p>
-        <p>The main goal of this template is to speed up the setup phase of plugin development for both new and experienced developers by preconfiguring the project scaffold and CI, linking to the proper documentation pages, and keeping everything organized.</p>
+        <p><b>Width Separator</b> shows a vertical guide at a file-specific column in test data files.</p>
+        <p>The guide is shown for <code>.input</code> and <code>.output</code> files that declare the column with a
+        <code>// MAX_WIDTH N</code> comment on its own line, for example <code>// MAX_WIDTH 100</code>.</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
-
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <!-- Restricts the plugin to IntelliJ IDEA (Community and Ultimate); other IDEs do not provide this module. -->
+    <depends>com.intellij.modules.idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.zarechenskiy.widthseparator.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.zarechenskiy.widthseparator.startup.MyProjectActivity" />
+        <editorFactoryListener implementation="com.github.zarechenskiy.widthseparator.MaxWidthGuideEditorListener"/>
     </extensions>
 </idea-plugin>
