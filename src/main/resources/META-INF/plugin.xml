@@ -7,6 +7,8 @@
         <p><b>Width Separator</b> shows a vertical guide at a file-specific column in test data files.</p>
         <p>The guide is shown for <code>.input</code> and <code>.output</code> files that declare the column with a
         <code>// MAX_WIDTH N</code> comment on its own line, for example <code>// MAX_WIDTH 100</code>.</p>
+        <p>Editors of <code>.input</code> files also get a button in their top right corner that opens the matching
+        <code>Name.new.output</code> file in a split to the right, creating it if it does not exist yet.</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
@@ -15,5 +17,17 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <editorFactoryListener implementation="com.github.zarechenskiy.widthseparator.MaxWidthGuideEditorListener"/>
+        <editorFloatingToolbarProvider implementation="com.github.zarechenskiy.widthseparator.ExpectedOutputToolbarProvider"/>
     </extensions>
+
+    <actions>
+        <!-- Shown as a floating toolbar in the top right corner of `*.input` editors. -->
+        <group id="WidthSeparator.InputEditorToolbar">
+            <action id="WidthSeparator.OpenExpectedOutputInSplit"
+                    class="com.github.zarechenskiy.widthseparator.OpenExpectedOutputAction"
+                    icon="AllIcons.Actions.SplitVertically"
+                    text="Open Expected Output in Right Split"
+                    description="Creates Name.new.output next to Name.input and opens it in a split to the right"/>
+        </group>
+    </actions>
 </idea-plugin>
