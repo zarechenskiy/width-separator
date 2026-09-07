@@ -4,19 +4,32 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [group](./gradle.properties), as well as the [id](./src/main/resources/META-INF/plugin.xml), [name](./src/main/resources/META-INF/plugin.xml), and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin [description](./src/main/resources/META-INF/plugin.xml) (see [Tips][docs:plugin-description]) and this README to describe what your plugin does.
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `MARKETPLACE_ID` in the above README badges. You can obtain it once the plugin is published to JetBrains Marketplace.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
+Two small editor conveniences for working on formatter test data in the [ktfmt](https://github.com/facebook/ktfmt)
+repository, where a test case is a `Name.input` file next to its expected `Name.output`.
 
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+Requires IntelliJ IDEA 2026.1 or later.
+
+## What it does
+
+### A vertical guide at the declared maximum width
+
+A formatter test case only makes sense at a particular line length, and that length is part of the test data rather
+than of your editor settings. When a `.input` or `.output` file contains a comment line such as
+
+```
+// MAX_WIDTH 40
+```
+
+the editor paints a vertical guide right after column 40 — in that file only. Lines that the formatter is expected to
+wrap become visible at a glance, without counting characters and without touching the global right margin.
+
+The guide follows the comment while you type: change the number and it moves, remove the comment and it disappears.
+
+### One click from an input file to its output
+
+Editors of `Name.input` files get a button in their top right corner. It opens the `Name.new.output` companion file in
+a split to the right, creating an empty one if it does not exist yet, so that an input and the output being written for
+it sit side by side.
 
 ## Installation
 
@@ -37,9 +50,15 @@ This Fancy IntelliJ Platform Plugin is going to be your implementation of the br
   Download the [latest release](https://github.com/zarechenskiy/width-separator/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
+## Before the first publication
+
+- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
+- [ ] [Publish the plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
+- [ ] Set the `MARKETPLACE_ID` in the above README badges. You can obtain it once the plugin is published to JetBrains Marketplace.
+- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
+- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
 
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
-[docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation
